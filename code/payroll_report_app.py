@@ -45,8 +45,6 @@ Test it: pytest tests/test_pipeline.py -k app
 # What the page does NOT do: cleaning, grouping, pivoting. If you find yourself
 # writing a groupby or a pivot_table here, that logic belongs in the package.
 import streamlit as st
-import pandas as pd
-
 from payroll import (
     load_employees,
     load_export,
@@ -58,7 +56,9 @@ from payroll import (
 )
 
 st.title("Salt City Coffee — Quarterly Payroll Report")
-st.subheader("Upload the weekly payroll exports for the period you want to review - old spreadsheet weeks and new app weeks can be mixed. The roster is loaded automatically.")
+st.subheader("Upload the weekly payroll exports for the period you want to review -\
+              old spreadsheet weeks and new app weeks can be mixed.\
+              The roster is loaded automatically.")
 st.write("Select department and data range to explore payroll data for the quarter.")
 
 roster = load_employees()
@@ -80,8 +80,6 @@ roster_ids = set(roster["employee_id"])
 uploaded_ids = set(history["employee_id"])
 
 unmatched_ids = uploaded_ids - roster_ids
-
-
 
 if unmatched_ids:
     original_ids = history[
@@ -151,5 +149,4 @@ st.download_button(
     data=csv_data,
     file_name="pay_by_month.csv",
     mime="text/csv",
-    key="download"
-)
+    key="download")
