@@ -61,8 +61,8 @@ def missed_weeks(grid: pd.DataFrame) -> pd.DataFrame:
         value_name="hours_worked",
     )
     missing = long[long["hours_worked"] == 0].copy()
-    missing = missing.sort_values(by=["employee_id", "week_ending"]).reset_index\
-(drop=True)
+    missing = missing.sort_values(by=["employee_id", "week_ending"])
+    missing = missing.reset_index(drop=True)
     return missing
 
 
